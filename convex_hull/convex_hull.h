@@ -1,15 +1,9 @@
-#include <iostream>
+#pragma once
 #include <vector>
 
+#include "point.h"
+
 using namespace std;
-
-struct Point {
-  float x, y;
-  Point(float x, float y) : x(x), y(y) {}
-  Point() : x(0), y(0) {}
-
-  void print() const { cout << "(" << x << ", " << y << ")" << endl; }
-};
 
 class ConvexHull {
  public:
@@ -58,19 +52,3 @@ class ConvexHull {
     return (p2.x - p1.x) * (p.y - p1.y) - (p2.y - p1.y) * (p.x - p1.x);
   }
 };
-
-int main() {
-  ConvexHull ch;
-  vector<Point> point1s = {Point(0, 0),  Point(1, 1),     Point(2, 0),
-                           Point(1, -1), Point(0.5, 0.5), Point(1.5, -0.5)};
-  vector<Point> point2s = {Point(0, 0),  Point(2, 2), Point(4, 0),
-                           Point(2, 1),  Point(3, 2),  // interior point
-                           Point(1, -1), Point(3, -1)};
-  vector<Point> hull = ch.quickHull(point2s);
-
-  for (const auto &point : hull) {
-    point.print();
-  }
-
-  return 0;
-}
